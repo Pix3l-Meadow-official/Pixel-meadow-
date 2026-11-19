@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixel Meadow — Una aventura pixelada</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;700;900&display=swap');
+:root{--ink:#171333;--night:#21194d;--purple:#6546a5;--pink:#f18acb;--cream:#fff1d0;--green:#8fcf75;--orange:#ff9b59}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#171333;color:var(--cream);font-family:Nunito,system-ui,sans-serif}
+nav{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 7%;background:#171333;border-bottom:3px solid #47336f;position:sticky;top:0;z-index:5}
+.logo{font:14px 'Press Start 2P';color:#f4d9ff;text-shadow:3px 3px #6948a5}nav a{color:#f8eaff;text-decoration:none;font-weight:900;margin-left:24px;font-size:14px}nav a:hover{color:var(--pink)}
+.hero{min-height:620px;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:80px 20px 120px;background:radial-gradient(ellipse at 50% 78%,#9a4d9f 0%,#513b88 37%,#241c58 73%,#171333 100%)}
+.stars{position:absolute;inset:0;background-image:radial-gradient(#ffd8ff 1.5px,transparent 2px),radial-gradient(#a8a0ff 1px,transparent 2px);background-size:83px 79px,127px 113px;background-position:10px 8px,35px 27px;opacity:.75}
+.moon{position:absolute;right:13%;top:75px;width:72px;height:72px;border-radius:50%;background:#ffe6a0;box-shadow:0 0 40px #ffc97a88}
+.volcano{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(650px,95vw);height:330px;background:linear-gradient(115deg,transparent 0 17%,#29234f 17% 30%,#554078 30% 50%,#342750 50% 75%,transparent 75%);clip-path:polygon(0 100%,25% 35%,37% 49%,52% 0,62% 28%,77% 48%,100% 100%);opacity:.9}
+.lava{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(650px,95vw);height:330px;background:linear-gradient(100deg,transparent 0 49%,#ffb45d 49% 51%,transparent 51%),linear-gradient(80deg,transparent 0 57%,#ff765c 57% 59%,transparent 59%);clip-path:polygon(0 100%,25% 35%,37% 49%,52% 0,62% 28%,77% 48%,100% 100%);opacity:.9}
+.hero-content{position:relative;z-index:2;max-width:800px}
+.kicker{font:10px 'Press Start 2P';letter-spacing:2px;color:#ffd6f2}
+h1{font:clamp(28px,6vw,58px) 'Press Start 2P';line-height:1.5;margin:20px 0;color:#fff0d3;text-shadow:5px 5px #6d4b9f,9px 9px #21183f}
+.hero p{font-size:19px;max-width:600px;margin:0 auto 30px;color:#f6e5ff;line-height:1.7}
+.btn{display:inline-block;padding:16px 22px;background:#f28acb;color:#25183f;text-decoration:none;font:11px 'Press Start 2P';border:4px solid #fff0d3;box-shadow:5px 5px #171333;transition:.15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px #171333}
+section{padding:90px 8%;max-width:1200px;margin:auto}
+h2{font:clamp(18px,3vw,28px) 'Press Start 2P';line-height:1.6;color:#f4d9ff;text-shadow:3px 3px #6546a5;margin:0 0 25px}
+.intro{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.intro p,.feature p,.world p{color:#d8cdea;line-height:1.8;font-size:17px}
+.pixel-scene{height:270px;border:5px solid #7960a5;position:relative;overflow:hidden;background:linear-gradient(#4d438a 0 45%,#e58ac1 45% 65%,#6e9e65 65%);box-shadow:9px 9px #0e0b25}
+.pixel-scene:before{content:"";position:absolute;bottom:-45px;left:15%;width:75%;height:230px;background:#33284f;clip-path:polygon(0 100%,20% 40%,38% 60%,55% 0,72% 50%,100% 100%)}
+.pixel-scene:after{content:"";position:absolute;bottom:0;left:0;width:100%;height:34px;background:repeating-linear-gradient(90deg,#79b96d 0 18px,#8fd17b 18px 34px)}
+.sun{position:absolute;right:18%;top:25px;width:40px;height:40px;background:#ffe69a;border-radius:50%;box-shadow:0 0 22px #ffdb8a}
+.character{position:absolute;z-index:2;bottom:28px;left:43%;font-size:48px;filter:drop-shadow(3px 3px #211333)}
+.owl{position:absolute;z-index:2;bottom:90px;left:18%;font-size:35px}
+.features{background:#211a46;max-width:none}
+.features-inner{max-width:1050px;margin:auto}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:#30265c;border:3px solid #685394;padding:25px;box-shadow:5px 5px #120f2c}
+.card .emoji{font-size:35px}.card h3{font:11px 'Press Start 2P';line-height:1.7;color:#ffcae9;margin:18px 0 10px}.card p{font-size:15px;line-height:1.7;color:#d8cdea}
+.world{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}
+.world-art{font-size:100px;text-align:center;padding:45px 15px;background:linear-gradient(145deg,#4e3b85,#241b50);border:4px solid #8d70b7}
+footer{text-align:center;padding:35px 15px;background:#100e25;color:#9f91ba;font-size:13px}
+footer strong{color:#f4d9ff}
+@media(max-width:700px){nav{padding:0 5%;height:auto;min-height:68px;gap:10px;flex-wrap:wrap}nav a{margin:0 0 0 10px;font-size:12px}.logo{font-size:11px}.hero{min-height:560px}.intro,.world{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.hero p{font-size:16px}section{padding:65px 7%}}
+</style>
+</head>
+<body>
+<nav><div class="logo">PIXEL MEADOW</div><div><a href="#juego">El juego</a><a href="#aventura">Aventura</a><a href="#mundo">El mundo</a></div></nav>
+<header class="hero">
+  <div class="stars"></div><div class="moon"></div><div class="volcano"></div><div class="lava"></div>
+  <div class="hero-content">
+    <div class="kicker">UNA AVENTURA PIXELADA</div>
+    <h1>PIXEL<br>MEADOW</h1>
+    <p>Explora praderas misteriosas, conoce criaturas curiosas y descubre qué secretos esconde el volcán.</p>
+    <a class="btn" href="#juego">DESCUBRIR EL JUEGO</a>
+  </div>
+</header>
+<section id="juego" class="intro">
+  <div><h2>UN MUNDO POR DESCUBRIR</h2><p>Pixel Meadow es una aventura de estilo retro donde cada camino puede llevarte a una sorpresa. Recorre senderos, encuentra personajes y adéntrate en un mundo lleno de pequeños misterios.</p><p>Prepara tu mochila: la aventura apenas comienza.</p></div>
+  <div class="pixel-scene"><div class="sun"></div><div class="owl">🦉</div></div>
+</section>
+<div class="features"><section class="features-inner" id="aventura">
+  <h2>¿QUÉ TE ESPERA?</h2>
+  <div class="cards">
+    <article class="card"><div class="emoji">🌿</div><h3>EXPLORA</h3><p>Camina por praderas verdes, senderos y rincones escondidos.</p></article>
+    <article class="card"><div class="emoji">🐦</div><h3>CONOCE</h3><p>Encuentra criaturas especiales y descubre quiénes habitan el valle.</p></article>
+    <article class="card"><div class="emoji">🌋</div><h3>DESCUBRE</h3><p>Acércate al volcán y desentraña los secretos de este extraño lugar.</p></article>
+  </div>
+</section></div>
+<section class="world" id="mundo">
+  <div class="world-art">🌋 🌌</div>
+  <div><h2>LA AVENTURA TE ESPERA</h2><p>Un paisaje tranquilo, un volcán misterioso y un montón de lugares por conocer. ¿Qué habrá al otro lado del camino?</p><p><strong>Pixel Meadow</strong> — un pequeño mundo, infinitas aventuras.</p></div>
+</section>
+<footer>© 2026 <strong>Pixel Meadow</strong> · Una aventura en desarrollo</footer>
+</body>
+</html>
